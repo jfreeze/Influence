@@ -21,9 +21,10 @@ module Influence
     private
 
     def starting
-      puts "Starting Influence Server (#{Process.id})..."
+      puts "Starting Influence Server (#{Process.pid})..."
       true
     end
+    
     def connecting( tcp_socket )
       puts " - Before serve #{tcp_socket}"
   #    p tcp_socket.methods
@@ -38,7 +39,7 @@ module Influence
       true
     end
     def stopping
-      puts " - Server shuts down"
+      puts "Influence Server shutting down (#{Process.pid})..."
       true
     end
   end#end Class

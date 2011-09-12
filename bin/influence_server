@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'rubygems'
-require 'daemons'
-
-Daemons.run_proc('influence.rb') do
-  loop { sleep 5 }
-end
-
