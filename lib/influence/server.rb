@@ -1,9 +1,7 @@
 require 'gserver'
 
 module Influence
-
   class Server < GServer
-    DEFAULT_PORT = 4321
     
     def initialize(port=DEFAULT_PORT, *args)
       super
