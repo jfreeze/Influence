@@ -18,7 +18,8 @@ module Influence
     # run_remote_command => url
 
     def process
-#      @message[:x]
+#      data = JSON.parse(@message)
+      # Log.info @message
     end
     
     def respond

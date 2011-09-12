@@ -12,7 +12,7 @@ module Influence
     end
 
     def self.launch(options={})
-      @server = new(options[:port] || Influence::DEFAULT_PORT)
+      @server       = new(options[:port] || Influence::DEFAULT_PORT)
       @server.audit = true
       @server.start
       @server.join
@@ -30,7 +30,8 @@ module Influence
     end
     
     def connecting( tcp_socket )
-      Log.info "Client connecting #{tcp_socket.addr}"
+      Log.info "Client connecting #{tcp_socket.peeraddr}"
+      @peer_ip = tcp_socket.peeraddr[2]
   #    p tcp_socket.methods
       # Log.info tcp_socket.getsockname
       Log.info tcp_socket.peeraddr
