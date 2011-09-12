@@ -1,0 +1,7 @@
+= Summary
+
+Client/server app for running apps on remote systems. Designed for automated, remote server deployment.
+
+= NOTICE
+
+Not ready for use yet. Will be usable in a few days.
