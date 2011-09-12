@@ -8,7 +8,7 @@ require 'influence/config'
 
 
 class Influencer
-  def initialize(host = DEFAULT_HOST, port = Influence::DEFAULT_PORT)
+  def initialize(host = Influence::DEFAULT_HOST, port = Influence::DEFAULT_PORT)
     @host = host
     @port = port
 
@@ -28,8 +28,9 @@ class Influencer
     ap response
     response = JSON.parse(response)
     ap response
-    rescue Errno::ECONNREFUSED
-      puts "Could not connect to #{@host}:#{@port}."
+    rescue Errno::ECONNREFUSED => err
+      puts "Could not connect to #{@host}:#{@port}. Check that the influence server is running with 'influence_server status'."
+      puts err
   end
 end
 
