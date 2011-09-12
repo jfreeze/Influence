@@ -1,8 +1,10 @@
 require 'gserver'
+require 'logger'
 
 module Influence
   class Server < GServer
-    
+    Log = Logger.new(File.join(File.dirname(__FILE__), "..", "..", "bin", 'influence.log'), 5, 1024000)
+
     def initialize(port=DEFAULT_PORT, *args)
       super
     end
@@ -21,12 +23,12 @@ module Influence
     private
 
     def starting
-      puts "Starting Influence Server (#{Process.pid})..."
+      Log.info "Starting Influence Server (#{Process.pid})..."
       true
     end
     
     def connecting( tcp_socket )
-      puts " - Before serve #{tcp_socket}"
+      Log.info " - Before serve #{tcp_socket}"
   #    p tcp_socket.methods
       # puts tcp_socket.getsockname
       puts tcp_socket.peeraddr
@@ -35,7 +37,7 @@ module Influence
       true
     end
     def disconnecting( client_port )
-      puts " - After serve #{client_port}"
+      Log.info " - After serve #{client_port}"
       true
     end
     def stopping

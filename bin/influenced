@@ -1,7 +1,5 @@
 require 'rubygems'
 require 'influence'
 
-#$:.unshift("./lib")
-
 Influence::Server.launch
 
