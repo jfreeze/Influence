@@ -33,10 +33,12 @@ module Influence
       rescue Errno::ECONNREFUSED => err
         puts "Could not connect to #{@host}:#{@port}. Check that the influence server is running with 'influence_server status'."
         puts err if $DEBUG
+      rescue SocketError => err
+        puts "Cannot resolve host address #{@host}. Check host name or address."
+        puts err if $DEBUG
     end
   end#class
 end#module
-
 
 if '-h' == ARGV[0] || '-help' == ARGV[0] || '--help' == ARGV[0]
   puts "Usage: influencer [host] [port]"
