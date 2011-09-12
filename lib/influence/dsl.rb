@@ -8,6 +8,8 @@ module Influencer
       @current_message = ??
       @shell_command = ""
       yield
+      convert_to_json
+      send
     end
     
     def shell_command(cmd)
@@ -20,6 +22,26 @@ module Influencer
     
     def response
       @current_response
+    end
+    
+    private
+    
+    def convert_to_json
+      process_message
+      @message = { :shell_command => @command }.to_json
+    end
+    
+    def process_message
+      praocess_variables
+      @message = [@json_variables, @shell_command].join('; ')
+    end
+    
+    def praocess_variables
+      vars = []
+      @variables.each do |name, val|
+        vars = "export #{name}='#{val}'"
+      end
+      @json_variables = vars.join('; ')
     end
   end
 end

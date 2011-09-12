@@ -1,3 +1,4 @@
 influence-*.gem
 Gemfile.lock
 .rvmrc
+daemons.rb.pid

@@ -23,7 +23,7 @@ module Influence
     private
 
     def starting
-      puts " - Server starts up"
+      puts "Starting Influence Server (#{Process.id})..."
       true
     end
     def connecting( tcp_socket )

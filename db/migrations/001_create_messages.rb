@@ -7,7 +7,7 @@
 #       String   :influencer_ip
 #       DateTime :received_at
 #       DateTime :responded_at
-#       Integer  :result_code
+#       Integer  :result_code  existstatus
 #       Text     :log
 # 
 #       DateTime :created_at
