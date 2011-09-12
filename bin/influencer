@@ -6,37 +6,41 @@ require 'socket'
 require 'json'
 require 'influence/config'
 
+module Influence
+  class Client
+    DEFAULT_HOST = 'localhost'
 
-class Influencer
-  def initialize(host = Influence::DEFAULT_HOST, port = Influence::DEFAULT_PORT)
-    @host = host
-    @port = port
+    def initialize(host = Influence::Client::DEFAULT_HOST, port = Influence::DEFAULT_PORT)
+      @host = host
+      @port = port
 
-    @data = {
-      :url => 'github.com',
-      :action => :install,
-      :big1 => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      :big2 => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    }
+      @data = {
+        :url => 'github.com',
+        :action => :install,
+        :big1 => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        :big2 => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      }
 
-  end
+    end
   
-  def connect
-    server = TCPSocket.open(@host, @port)
-    server.puts(@data.to_json)
-    response = server.readline
-    ap response
-    response = JSON.parse(response)
-    ap response
-    rescue Errno::ECONNREFUSED => err
-      puts "Could not connect to #{@host}:#{@port}. Check that the influence server is running with 'influence_server status'."
-      puts err
-  end
-end
+    def connect
+      server = TCPSocket.open(@host, @port)
+      server.puts(@data.to_json)
+      response = server.readline
+      ap response
+      response = JSON.parse(response)
+      ap response
+      rescue Errno::ECONNREFUSED => err
+        puts "Could not connect to #{@host}:#{@port}. Check that the influence server is running with 'influence_server status'."
+        puts err if $DEBUG
+    end
+  end#class
+end#module
 
-unless ARGV[0].nil?
-  Influencer.new(*ARGV).connect
+
+if '-h' == ARGV[0] || '-help' == ARGV[0] || '--help' == ARGV[0]
+  puts "Usage: influencer [ip] [port]"
 else
-  Influencer.new().connect
+  Influence::Client.new(*ARGV).connect
 end
 

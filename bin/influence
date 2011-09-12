@@ -3,5 +3,9 @@
 require 'rubygems'
 require 'daemons'
 
-Daemons.run(File.join(File.dirname(__FILE__), 'influenced'))
+if '--log' == ARGV[0]
+  puts File.join(File.dirname(__FILE__), 'influence.log')
+else
+  Daemons.run(File.join(File.dirname(__FILE__), 'influenced'))
+end
 
