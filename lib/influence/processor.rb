@@ -1,5 +1,5 @@
 require 'json'
-require 'message'
+#require 'message'
 
 module Influence
   class Processor
@@ -14,13 +14,11 @@ module Influence
     
     private
     
-    # 
     # run_command => command
     # run_remote_command => url
-    # 
-    # 
+
     def process
-      @message[:]
+#      @message[:x]
     end
     
     def respond

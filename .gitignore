@@ -1,1 +1,3 @@
 influence-*.gem
+Gemfile.lock
+.rvmrc

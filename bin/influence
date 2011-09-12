@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'influence'
+require './lib/influence'
 
 Influence::Server.launch
