@@ -5,10 +5,11 @@ module Influence
   class Server < GServer
     Log = Logger.new(File.join(File.dirname(__FILE__), "..", "..", "bin", 'influence.log'), 5, 1024000)
 
-    def initialize(port=DEFAULT_PORT, *args)
-      super
+    def initialize(port, options = {}, *args)
+      super(port, options[:host] || Influence::DEFAULT_HOST, args)
+      @options = options
     end
-    
+
     def self.launch
       @server       = new
       @server.audit = true
