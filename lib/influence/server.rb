@@ -30,20 +30,20 @@ module Influence
     end
     
     def connecting( tcp_socket )
-      Log.info " - Before serve #{tcp_socket}"
+      Log.info "Client connecting #{tcp_socket.addr}"
   #    p tcp_socket.methods
-      # puts tcp_socket.getsockname
-      puts tcp_socket.peeraddr
-      puts tcp_socket.addr
-      # puts tcp_socket.count
+      # Log.info tcp_socket.getsockname
+      Log.info tcp_socket.peeraddr
+      Log.info tcp_socket.addr
+      # Log.info tcp_socket.count
       true
     end
-    def disconnecting( client_port )
-      Log.info " - After serve #{client_port}"
+    def disconnecting(client_port)
+      Log.info " - Client disconnecting from port #{client_port}"
       true
     end
     def stopping
-      puts "Influence Server shutting down (#{Process.pid})..."
+      Log.info "Influence Server shutting down (#{Process.pid})..."
       true
     end
   end#end Class
