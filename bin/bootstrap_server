@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+bootserver = File.join(File.dirname(__FILE__), 'bootserver.pl')
+
+if ARGV.size != 2
+  puts "Usage: #{File.basename $PROGRAM_NAME} user host"
+  exit
+end
+
+user = ARGV[0]
+host = ARGV[1]
+
+cmd = %Q{cat #{bootserver} | ssh #{user}@#{host} "perl -"}
+
+system cmd

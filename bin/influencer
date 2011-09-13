@@ -25,7 +25,11 @@ module Influence
 
     def connect
       @server = TCPSocket.open(@host, @port)
-      @server.puts(@data.to_json)
+      @server.puts("ls")
+      @server.puts("ls -alF")
+      @server.puts("_close_")
+      exit
+#      @server.puts(@data.to_json)
       response = @server.readline
       ap response
       response = JSON.parse(response)
