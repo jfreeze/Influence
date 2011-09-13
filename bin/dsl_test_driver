@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'awesome_print'
+require 'json'
+require 'influence/dsl'
+
+file = ARGV[0]
+Influencer::DSL.load(file)

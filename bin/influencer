@@ -22,20 +22,22 @@ module Influence
       }
 
     end
-  
+
     def connect
-      server = TCPSocket.open(@host, @port)
-      server.puts(@data.to_json)
-      response = server.readline
+      @server = TCPSocket.open(@host, @port)
+      @server.puts(@data.to_json)
+      response = @server.readline
       ap response
       response = JSON.parse(response)
       ap response
       rescue Errno::ECONNREFUSED => err
-        puts "Could not connect to #{@host}:#{@port}. Check that the influence server is running with 'influence_server status'."
+        puts "Could not connect to #{@host}:#{@port}. Check that the influence server is running with 'influence status'."
         puts err if $DEBUG
       rescue SocketError => err
         puts "Cannot resolve host address #{@host}. Check host name or address."
         puts err if $DEBUG
+      rescue EOFError
+        puts "No more data for client to read"
     end
   end#class
 end#module

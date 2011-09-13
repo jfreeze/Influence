@@ -2,8 +2,9 @@ require 'gserver'
 require 'logger'
 
 module Influence
+  Log = Logger.new(File.join(File.dirname(__FILE__), "..", "..", "bin", 'influence.log'), 5, 1024000)
+
   class Server < GServer
-    Log = Logger.new(File.join(File.dirname(__FILE__), "..", "..", "bin", 'influence.log'), 5, 1024000)
 
     def initialize(port, options = {})
       @port    = port

@@ -1,5 +1,8 @@
 module Influencer
   class DSL
+    def self.load(file)
+    end
+
     def initialize
       @current_message
     end
