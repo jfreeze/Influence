@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# Pushed the Perl boot server to the remote system and launches it
 bootserver = File.join(File.dirname(__FILE__), 'bootserver.pl')
 
 if ARGV.size != 2
