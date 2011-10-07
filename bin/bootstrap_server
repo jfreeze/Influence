@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
-# Pushed the Perl boot server to the remote system and launches it
+# Pushes the Perl boot server to the remote system and launches it
+# This server is a raw server that executes commands on the remote system.
+# It should only be used to configure the remote system so it can
+# run influenced
 bootserver = File.join(File.dirname(__FILE__), 'bootserver.pl')
 
 if ARGV.size != 2
